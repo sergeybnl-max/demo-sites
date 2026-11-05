@@ -14,9 +14,10 @@
     --paper: #ffffff;
     --sand: #f1ede4;
     --line: #e2ddd2;
-    --accent: #b4532a;
-    --accent-dark: #8f3f1f;
-    --accent-text: #ffffff;
+    --accent: #f4c20d;        /* жёлтый с логотипа DeC */
+    --accent-dark: #ddab00;
+    --accent-text: #1f2328;
+    --accent-ink: #8a6500;    /* жёлтый для текста на светлом фоне */
     --ok: #1b7f3b;
     --error: #c62828;
     --radius: 14px;
@@ -39,7 +40,7 @@
   header { position: sticky; top: 0; z-index: 10; background: rgba(251,250,247,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
   .head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; }
   .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .logo-mark { width: 38px; height: 38px; border-radius: 10px; background: var(--accent); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 16px; letter-spacing: .02em; }
+  .logo-mark { width: 38px; height: 38px; border-radius: 10px; background: var(--ink); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: 16px; letter-spacing: .02em; }
   .logo-text b { display: block; font-size: 18px; }
   .logo-text span { display: block; font-size: 12px; color: var(--muted); }
   .head-nav { display: none; gap: 22px; font-size: 15px; }
@@ -63,21 +64,22 @@
   .rating { display: inline-flex; align-items: center; gap: 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; margin-bottom: 18px; }
   .stars { color: #e0a100; letter-spacing: 1px; }
   .hero h1 { font-size: clamp(30px, 5.4vw, 50px); letter-spacing: -.02em; margin-bottom: 16px; }
-  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero h1 em { font-style: normal; background: linear-gradient(transparent 58%, var(--accent) 58%); padding: 0 2px; }
   .hero p.lead { font-size: 18px; color: var(--muted); margin: 0 0 26px; max-width: 540px; }
   .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
   .facts { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 26px 0 0; padding: 0; list-style: none; font-size: 15px; color: var(--muted); }
-  .facts li::before { content: "✓ "; color: var(--accent); font-weight: 700; }
+  .facts li::before { content: "✓ "; color: var(--accent-ink); font-weight: 700; }
 
-  /* Плитка — визуал из CSS, без фото */
-  .tiles { aspect-ratio: 1 / 1; max-width: 440px; width: 100%; justify-self: center; border-radius: 22px; overflow: hidden;
-           display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 6px; background: #d9d2c4;
-           box-shadow: 0 20px 50px rgba(60,40,20,.12); }
-  .tiles i { border-radius: 6px; background: #f3efe7; }
-  .tiles i:nth-child(3n) { background: #e8e1d3; }
-  .tiles i:nth-child(5n) { background: #c9875f; }
-  .tiles i:nth-child(7n) { background: #ece6da; }
-  .tiles i.big { grid-column: span 2; grid-row: span 2; background: linear-gradient(135deg, #b4532a, #d27a4c); }
+  /* Фото работ */
+  .hero-photo { margin: 0; justify-self: center; width: 100%; max-width: 420px; position: relative; }
+  .hero-photo img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 22px; box-shadow: 0 20px 50px rgba(30,30,30,.16); }
+  .hero-photo figcaption { position: absolute; left: 14px; bottom: 14px; background: rgba(31,35,40,.82); color: #fff; font-size: 13px; padding: 6px 10px; border-radius: 8px; }
+  .works { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 700px) { .works { grid-template-columns: repeat(3, 1fr); } }
+  .works figure { margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .works img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 65%; }
+  .works figcaption { padding: 12px 14px; font-size: 15px; }
+  .works figcaption span { display: block; color: var(--muted); font-size: 13px; }
 
   /* Услуги */
   .cards { display: grid; gap: 14px; grid-template-columns: 1fr; }
@@ -105,8 +107,8 @@
   .seg { display: flex; flex-wrap: wrap; gap: 8px; }
   .seg label { position: relative; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; cursor: pointer; min-height: 44px; display: flex; align-items: center; background: var(--paper); }
   .seg input { position: absolute; opacity: 0; pointer-events: none; }
-  .seg input:checked + span { color: var(--accent); font-weight: 600; }
-  .seg label:has(input:checked) { border-color: var(--accent); }
+  .seg input:checked + span { color: var(--ink); font-weight: 600; }
+  .seg label:has(input:checked) { border-color: var(--ink); background: #fff7d6; }
   .seg label:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 1px; }
   .check { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
   .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: none; }
@@ -140,7 +142,7 @@
   .steps { display: grid; gap: 14px; grid-template-columns: 1fr; counter-reset: s; padding: 0; margin: 0; list-style: none; }
   @media (min-width: 760px) { .steps { grid-template-columns: repeat(4, 1fr); } }
   .steps li { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; counter-increment: s; }
-  .steps li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--sand); color: var(--accent); font-weight: 800; margin-bottom: 10px; }
+  .steps li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--ink); font-weight: 800; margin-bottom: 10px; }
   .steps b { display: block; margin-bottom: 4px; }
   .steps span { color: var(--muted); font-size: 15px; }
 
@@ -169,16 +171,17 @@
 </head>
 <body>
 
-<div class="demo-bar">Демо-версия сайта для DeS. Цены и данные — из открытой карточки 2ГИС; тексты, фото и цвета поправим под вас.</div>
+<div class="demo-bar">Демо-версия сайта для DeS. Цены, фото и данные — из вашей карточки 2ГИС; всё поправим под вас.</div>
 
 <header>
   <div class="wrap head">
     <a class="logo" href="#top" aria-label="DeS — на главную">
       <span class="logo-mark">DeS</span>
-      <span class="logo-text"><b>DeS</b><span>ремонт и отделка · Барнаул</span></span>
+      <span class="logo-text"><b>DeS</b><span>студия ремонта · Барнаул</span></span>
     </a>
     <nav class="head-nav" aria-label="Разделы">
       <a href="#services">Услуги</a>
+      <a href="#works">Работы</a>
       <a href="#calc">Калькулятор</a>
       <a href="#prices">Цены</a>
       <a href="#reviews">Отзывы</a>
@@ -204,12 +207,10 @@
           <li>Наличные, карта, безнал</li>
         </ul>
       </div>
-      <div class="tiles" aria-hidden="true">
-        <i></i><i></i><i></i><i></i>
-        <i class="big"></i><i></i><i></i>
-        <i></i><i></i>
-        <i></i><i></i><i></i><i></i>
-      </div>
+      <figure class="hero-photo">
+        <img src="img/work3.jpg" alt="Ванная под ключ: керамогранит под мрамор, накладная раковина на деревянной столешнице" width="825" height="1100">
+        <figcaption>Наша работа · ванная под ключ</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -225,6 +226,19 @@
         <div class="card"><h3>Перегородки и короба из ГКЛ</h3><p>В один и два слоя, с шумоизоляцией. Короба под трубы и коммуникации.</p><span class="from">от 900 ₽/м²</span></div>
         <div class="card"><h3>Электромонтаж</h3><p>Розетки, выключатели, освещение, замена проводки — вместе с отделкой.</p><span class="from">по замеру</span></div>
       </div>
+    </div>
+  </section>
+
+  <section id="works" style="padding-top:0">
+    <div class="wrap">
+      <h2>Наши работы</h2>
+      <p class="sub">Санузлы под ключ: плитка и керамогранит, инсталляции, подсветка, мебель.</p>
+      <div class="works">
+        <figure><img src="img/work1.jpg" alt="Санузел: подвесной унитаз, ниша с подсветкой, зеркало с подсветкой" loading="lazy" width="825" height="1100"><figcaption>Санузел с нишей и подсветкой<span>инсталляция, крупноформатная плитка</span></figcaption></figure>
+        <figure><img src="img/work2.jpg" alt="Ванная: плитка под мрамор, подвесной унитаз, тумба с раковиной" loading="lazy" width="1100" height="825"><figcaption>Ванная в светлом мраморе<span>плитка, сантехника, полотенцесушитель</span></figcaption></figure>
+        <figure><img src="img/work3.jpg" alt="Ванная: стена из керамогранита под мрамор, экран ванны в плитке" loading="lazy" width="825" height="1100"><figcaption>Ванная с акцентной стеной<span>керамогранит крупного формата</span></figcaption></figure>
+      </div>
+      <p class="small-note">Фото из вашей карточки 2ГИС («От владельца»). Добавим сюда остальные работы.</p>
     </div>
   </section>
 
