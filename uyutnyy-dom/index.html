@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Уютный дом — ремонт квартир под ключ в Барнауле</title>
+<meta name="description" content="Косметический, капитальный и дизайнерский ремонт квартир, ванные и кухни под ключ, дизайн-проект. Калькулятор стоимости по нашему прайсу.">
+<meta name="robots" content="noindex">
+<meta name="build" content="20261107073749">
+<style>
+  :root {
+    --ink: #1e2a38;
+    --muted: #5f6670;
+    --bg: #fbfaf7;
+    --paper: #ffffff;
+    --sand: #f1ede4;
+    --line: #e2ddd2;
+    --accent: #b0582b;
+    --accent-dark: #8e4520;
+    --accent-text: #ffffff;
+    --accent-ink: #8e4520;
+    --marker: color-mix(in srgb, var(--accent) 30%, transparent);
+    --ok: #1b7f3b;
+    --error: #c62828;
+    --radius: 14px;
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+* { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--font); }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  section { padding: 56px 0; }
+  h1, h2, h3 { line-height: 1.2; margin: 0; }
+  h2 { font-size: clamp(24px, 4vw, 34px); margin-bottom: 12px; letter-spacing: -.01em; }
+  .sub { color: var(--muted); margin: 0 0 28px; max-width: 640px; }
+
+  /* Плашка демо */
+  .demo-bar { background: var(--ink); color: #f5f2ea; font-size: 14px; text-align: center; padding: 8px 16px; }
+
+  /* Шапка */
+  header { position: sticky; top: 0; z-index: 10; background: rgba(251,250,247,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+  .head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-mark { width: 38px; height: 38px; border-radius: 10px; background: var(--accent); color: var(--accent-text); display: grid; place-items: center; font-weight: 800; font-size: 16px; letter-spacing: .02em; }
+  .logo-text b { display: block; font-size: 18px; }
+  .logo-text span { display: block; font-size: 12px; color: var(--muted); }
+  .head-nav { display: none; gap: 22px; font-size: 15px; }
+  .head-nav a { text-decoration: none; color: var(--muted); }
+  .head-nav a:hover { color: var(--ink); }
+  @media (min-width: 860px) { .head-nav { display: flex; } }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px;
+         border-radius: var(--radius); border: 0; background: var(--accent); color: var(--accent-text);
+         font: 600 16px var(--font); text-decoration: none; cursor: pointer; }
+  .btn:hover { background: var(--accent-dark); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn.ghost:hover { background: var(--sand); }
+  .btn.small { min-height: 40px; padding: 0 14px; font-size: 15px; }
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+
+  /* Первый экран */
+  .hero { padding: 44px 0 56px; }
+  .hero-grid { display: grid; gap: 32px; align-items: center; }
+  @media (min-width: 860px) { .hero-grid { grid-template-columns: 1.15fr 1fr; } }
+  .rating { display: inline-flex; align-items: center; gap: 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; margin-bottom: 18px; }
+  .stars { color: #e0a100; letter-spacing: 1px; }
+  .hero h1 { font-size: clamp(30px, 5.4vw, 50px); letter-spacing: -.02em; margin-bottom: 16px; }
+  .hero h1 em { font-style: normal; background: linear-gradient(transparent 58%, var(--marker) 58%); padding: 0 2px; }
+  .hero p.lead { font-size: 18px; color: var(--muted); margin: 0 0 26px; max-width: 540px; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 26px 0 0; padding: 0; list-style: none; font-size: 15px; color: var(--muted); }
+  .facts li::before { content: "✓ "; color: var(--accent-ink); font-weight: 700; }
+
+  /* Фото работ */
+  .hero-photo { margin: 0; justify-self: center; width: 100%; max-width: 420px; position: relative; }
+  .hero-photo img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 22px; box-shadow: 0 20px 50px rgba(30,30,30,.16); }
+  .hero-photo figcaption { position: absolute; left: 14px; bottom: 14px; background: rgba(31,35,40,.82); color: #fff; font-size: 13px; padding: 6px 10px; border-radius: 8px; }
+  .works { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 699px) { .works figcaption { padding: 8px 10px; font-size: 14px; } .works figcaption span { font-size: 12px; } }
+  @media (min-width: 700px) { .works { grid-template-columns: repeat(3, 1fr); } }
+  .works figure { margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .works img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 65%; }
+  .works figcaption { padding: 12px 14px; font-size: 15px; }
+  .works figcaption span { display: block; color: var(--muted); font-size: 13px; }
+
+  /* Услуги */
+  .cards { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .cards { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 940px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+  .card h3 { font-size: 18px; margin-bottom: 6px; }
+  .card p { margin: 0 0 10px; color: var(--muted); font-size: 15px; }
+  .card .from { font-weight: 700; }
+
+  /* Калькулятор */
+  .calc-section { background: var(--sand); }
+  .calc-grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .calc-grid { grid-template-columns: 1.4fr 1fr; align-items: start; } }
+  .fields { display: grid; gap: 18px; background: var(--paper); border-radius: var(--radius); padding: 20px; border: 1px solid var(--line); }
+  .field label.title, .field .title { display: block; font-weight: 600; margin-bottom: 6px; }
+  .field .hint { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  .row { display: flex; gap: 8px; align-items: center; }
+  input[type=number], input[type=text], input[type=tel], select {
+    width: 100%; font: inherit; color: inherit; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 44px; }
+  input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .unit { color: var(--muted); white-space: nowrap; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .seg { display: flex; flex-wrap: wrap; gap: 8px; }
+  .seg label { position: relative; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; cursor: pointer; min-height: 44px; display: flex; align-items: center; background: var(--paper); }
+  .seg input { position: absolute; opacity: 0; pointer-events: none; }
+  .seg input:checked + span { color: var(--ink); font-weight: 600; }
+  .seg label:has(input:checked) { border-color: var(--ink); background: #fff7d6; }
+  .seg label:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .check { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+  .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: none; }
+  .result { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; position: sticky; top: 80px; }
+  .result h3 { font-size: 15px; margin: 0 0 10px; color: var(--muted); font-weight: 600; }
+  .lines { list-style: none; padding: 0; margin: 0 0 12px; }
+  .lines li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
+  .lines li span:last-child { white-space: nowrap; font-weight: 600; }
+  .total { font-size: 32px; font-weight: 800; margin: 6px 0 4px; letter-spacing: -.01em; }
+  .note { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .result .btn { width: 100%; }
+  .form { display: grid; gap: 10px; margin-top: 14px; }
+  .form[hidden] { display: none; }
+  .msg { font-size: 14px; }
+  .msg.ok { color: var(--ok); }
+  .msg.err { color: var(--error); }
+  .consent { font-size: 13px; color: var(--muted); }
+
+  /* Цены */
+  .price-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .price-grid { grid-template-columns: 1fr 1fr; } }
+  .price { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+  .price h3 { font-size: 17px; margin-bottom: 8px; }
+  .price table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .price td { padding: 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .price tr:last-child td { border-bottom: 0; }
+  .price td:last-child { text-align: right; white-space: nowrap; font-weight: 600; padding-left: 12px; }
+  .small-note { color: var(--muted); font-size: 13px; margin-top: 14px; }
+
+  /* Этапы */
+  .steps { display: grid; gap: 14px; grid-template-columns: 1fr; counter-reset: s; padding: 0; margin: 0; list-style: none; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .steps li { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; counter-increment: s; }
+  .steps li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--ink); font-weight: 800; margin-bottom: 10px; }
+  .steps b { display: block; margin-bottom: 4px; }
+  .steps span { color: var(--muted); font-size: 15px; }
+
+  /* Отзывы */
+  .reviews { display: grid; gap: 20px; align-items: center; background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 26px; }
+  @media (min-width: 760px) { .reviews { grid-template-columns: 220px 1fr; } }
+  .score { text-align: center; }
+  .score b { display: block; font-size: 56px; line-height: 1; }
+  .score span { color: var(--muted); font-size: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; padding: 0; list-style: none; }
+  .tags li { background: var(--sand); border-radius: 999px; padding: 6px 12px; font-size: 14px; }
+
+  /* Контакты */
+  .contact { background: var(--ink); color: #f5f2ea; border-radius: 22px; padding: 32px 24px; display: grid; gap: 20px; }
+  @media (min-width: 760px) { .contact { grid-template-columns: 1.3fr 1fr; align-items: center; padding: 40px; } }
+  .contact h2 { color: #fff; }
+  .contact p { color: #cfc8ba; margin: 0; }
+  .contact .btns { display: grid; gap: 10px; }
+  .btn.wa { background: #1f9d55; color: #fff; } .btn.wa:hover { background: #18804a; }
+  .btn.tg { background: #2a8bd6; color: #fff; } .btn.tg:hover { background: #2274b3; }
+  .demo-hint { font-size: 13px; color: #a9a294; }
+
+  footer { padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+  .reviews-text { margin: 0 0 12px; color: var(--muted); }
+  .hero-grid.no-photo { grid-template-columns: 1fr; max-width: 760px; }
+  .btn.mx { background: linear-gradient(135deg, #3d5afe, #8c3cf0); color: #fff; } .btn.mx:hover { filter: brightness(.9); }
+
+</style>
+</head>
+<body>
+<div class="demo-bar">Демо-версия сайта для «Уютный дом». Цены, фото и данные — из вашей карточки 2ГИС; всё поправим под вас.</div>
+<header>
+  <div class="wrap head">
+    <a class="logo" href="#top" aria-label="Уютный дом — на главную">
+      <span class="logo-mark">УД</span>
+      <span class="logo-text"><b>Уютный дом</b><span>ремонт квартир · Барнаул</span></span>
+    </a>
+    <nav class="head-nav" aria-label="Разделы"><a href="#services">Услуги</a><a href="#works">Работы</a><a href="#calc">Калькулятор</a><a href="#prices">Цены</a><a href="#reviews">Отзывы</a></nav>
+    <a class="btn small" href="#contact">Связаться</a>
+  </div>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="rating"><span class="stars" aria-hidden="true">★★★★★</span> <b>5,0</b> в 2ГИС · 12 оценок</div>
+        <h1>Ремонт квартир под ключ в Барнауле — <em>по договору и в срок</em></h1>
+        <p class="lead">Косметический, капитальный и дизайнерский ремонт, ванные и кухни под ключ, дизайн-проект. Посчитайте стоимость по нашему прайсу за минуту — без звонка.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#calc">Рассчитать стоимость</a>
+          <a class="btn ghost" href="#contact">Написать в WhatsApp</a>
+        </div>
+        <ul class="facts"><li>Работаем по договору</li><li>Новостройки и вторичка</li><li>Дизайн-проект от 800 ₽/м²</li></ul>
+      </div>
+      <figure class="hero-photo"><img src="img/hero.jpg" alt="Коридор после ремонта: тёмно-синие стены, шкаф-купе с зеркалом, пол ёлочкой" width="825" height="1100"><figcaption>Наша работа · коридор</figcaption></figure>
+    </div>
+  </section>
+  <section id="services"><div class="wrap">
+      <h2>Что делаем</h2>
+      <p class="sub">Квартиры целиком и отдельные помещения — от комнаты до ванной.</p>
+      <div class="cards"><div class="card"><h3>Косметический ремонт</h3><p>Освежить квартиру: стены, полы, потолки.</p><span class="from">от 2 500 ₽/м²</span></div><div class="card"><h3>Капитальный ремонт</h3><p>Квартира под ключ — в новостройке и во вторичке.</p><span class="from">от 5 000 ₽/м²</span></div><div class="card"><h3>Дизайнерский ремонт</h3><p>Ремонт по дизайн-проекту, с подбором материалов.</p><span class="from">от 8 000 ₽/м²</span></div><div class="card"><h3>Ванная под ключ</h3><p>Плитка, сантехника, свет — комната целиком.</p><span class="from">от 100 000 ₽</span></div><div class="card"><h3>Кухня</h3><p>Ремонт кухни под вашу мебель и технику.</p><span class="from">от 50 000 ₽</span></div><div class="card"><h3>Натяжные потолки</h3><p>Монтаж вместе с ремонтом или отдельно.</p><span class="from">от 450 ₽</span></div></div>
+  </div></section>
+  <section id="works" style="padding-top:0"><div class="wrap">
+      <h2>Наши работы</h2>
+      <p class="sub">Ванные, комнаты, коридоры и потолки — фото из наших объектов.</p>
+      <div class="works"><figure><img src="img/work1.jpg" alt="Ванная: чёрный мрамор, зеркала с подсветкой, душевая с чёрным профилем" loading="lazy" width="825" height="1100"><figcaption>Ванная в чёрном мраморе<span>плитка, подсветка зеркал, душевая</span></figcaption></figure><figure><img src="img/work2.jpg" alt="Спальня: светлые стены, кровать, подвесной светильник-кольцо" loading="lazy" width="825" height="1100"><figcaption>Спальня<span>стены, пол, свет</span></figcaption></figure><figure><img src="img/work3.jpg" alt="Ванная: светлая плитка, тумба, зеркало с подсветкой, полки" loading="lazy" width="825" height="1100"><figcaption>Светлая ванная<span>тумба, зеркало с подсветкой</span></figcaption></figure><figure><img src="img/work4.jpg" alt="Комната с акцентной стеной под мрамор и ламинатом" loading="lazy" width="825" height="1100"><figcaption>Комната с акцентной стеной<span>стена под мрамор, ламинат</span></figcaption></figure><figure><img src="img/work5.jpg" alt="Натяжной потолок со световыми линиями" loading="lazy" width="825" height="1100"><figcaption>Световые линии<span>натяжной потолок</span></figcaption></figure><figure><img src="img/work6.jpg" alt="Ванная: плитка под мрамор, ванна, место под стиральную машину" loading="lazy" width="825" height="1100"><figcaption>Ванная со стиральной машиной<span>плитка, шкаф, ниша</span></figcaption></figure></div>
+      <p class="small-note">Фото из вашей карточки 2ГИС («От владельца»). Добавим сюда остальные работы.</p>
+  </div></section>
+  <section class="calc-section" id="calc"><div class="wrap">
+      <h2 id="calc-title"></h2>
+      <p class="sub" id="calc-subtitle"></p>
+      <div class="calc-grid">
+        <form class="fields" id="calc-fields" novalidate></form>
+        <aside class="result" aria-live="polite">
+          <h3>Стоимость работ</h3>
+          <ul class="lines" id="calc-lines"></ul>
+          <div class="total" id="calc-total"></div>
+          <p class="note" id="calc-note"></p>
+          <button type="button" class="btn" id="lead-open"></button>
+          <form class="form" id="lead-form" hidden novalidate>
+            <input type="text" id="lead-name" placeholder="Ваше имя" autocomplete="name">
+            <input type="tel" id="lead-phone" placeholder="Телефон" autocomplete="tel">
+            <label class="check consent"><input type="checkbox" id="lead-consent"><span id="lead-consent-text"></span></label>
+            <button type="submit" class="btn" id="lead-send">Отправить</button>
+            <div class="msg" id="lead-msg" role="status"></div>
+          </form>
+        </aside>
+      </div>
+  </div></section>
+  <section id="prices"><div class="wrap">
+      <h2>Цены</h2>
+      <p class="sub">Цена работ «от», материалы отдельно. Точная смета — после замера.</p>
+      <div class="price-grid"><div class="price"><h3>Ремонт квартир</h3><table><tr><td>Косметический ремонт</td><td>от 2 500 ₽</td></tr><tr><td>Капитальный ремонт</td><td>от 5 000 ₽</td></tr><tr><td>Дизайнерский ремонт</td><td>от 8 000 ₽</td></tr><tr><td>Ремонт в новостройке</td><td>от 5 000 ₽</td></tr><tr><td>Ремонт во вторичке</td><td>от 5 000 ₽</td></tr></table></div><div class="price"><h3>Помещения и работы</h3><table><tr><td>Ремонт ванной комнаты</td><td>от 100 000 ₽</td></tr><tr><td>Ремонт кухни</td><td>от 50 000 ₽</td></tr><tr><td>Ремонт балконов и лоджий</td><td>от 5 000 ₽</td></tr><tr><td>Монтаж натяжных потолков</td><td>от 450 ₽</td></tr><tr><td>Укладка ламината</td><td>от 630 ₽</td></tr><tr><td>Дизайн-проект</td><td>от 800 ₽</td></tr></table></div></div>
+      <p class="small-note">Цены из карточки Уютный дом в 2ГИС, обновлены 24 марта 2026. Не является публичной офертой.</p>
+  </div></section>
+  <section><div class="wrap">
+      <h2>Как работаем</h2>
+      <p class="sub">От заявки до готовой квартиры.</p>
+      <ol class="steps"><li><b>Заявка</b><span>Расчёт с сайта, звонок или сообщение в мессенджер.</span></li><li><b>Замер</b><span>Приезжаем, смотрим объект, обсуждаем задачу.</span></li><li><b>Договор и смета</b><span>Фиксируем работы, стоимость и сроки.</span></li><li><b>Ремонт и приёмка</b><span>Делаем, держим вас в курсе, сдаём работу.</span></li></ol>
+  </div></section>
+  <section id="reviews"><div class="wrap">
+      <h2>Что говорят клиенты</h2>
+      <div class="reviews">
+        <div class="score"><b>5,0</b><span class="stars" aria-hidden="true">★★★★★</span><br><span>12 оценок в 2ГИС</span></div>
+        <div>
+          <ul class="tags"><li>Уложились в сроки</li><li>Всё по договору</li><li>Подсказали, где сэкономить</li></ul>
+          <p class="reviews-text">Клиенты пишут, что ремонт закончили в оговорённый срок, а иногда и раньше, всё по договору и без переносов. Отмечают, что Денис и команда подсказывают, на чём можно сэкономить, и им можно доверить выбор материалов. Многие приходят по рекомендации.</p>
+          <a class="btn ghost small" href="https://2gis.ru/barnaul/firm/70000001110927256/tab/reviews" target="_blank" rel="noopener">Читать отзывы в 2ГИС</a>
+        </div>
+      </div>
+  </div></section>
+  <section id="contact"><div class="wrap">
+      <div class="contact">
+        <div><h2>Обсудим ваш ремонт</h2><p>Опишите квартиру и задачу — посчитаем и предложим время замера. Офис: ул. Трактовая, 4а, офис 305.</p></div>
+        <div class="btns"><a class="btn wa" href="#contact" data-demo>Написать в WhatsApp</a><a class="btn tg" href="#contact" data-demo>Написать в Telegram</a><a class="btn mx" href="#contact" data-demo>Написать в MAX</a><span class="demo-hint" id="demo-hint">В рабочей версии кнопки откроют ваши WhatsApp, Telegram и MAX.</span></div>
+      </div>
+  </div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Уютный дом — ремонт помещений, Барнаул, ул. Трактовая, 4а</span>
+    <span>Демо-макет. Не является публичной офертой.</span>
+  </div>
+</footer>
+<script>
+/* CALC:START — калькулятор ремонта «площадь × тип + опции» по прайсу фирмы, где цены даны за м² и пакетами.
+   RATES подставляет build.py из firm.json → calc.rates:
+     kinds:  [{value, label, rate}]           — тип ремонта, ₽/м² (косметический, капитальный, дизайнерский…)
+     extras: [{id, label, price, per_m2}]     — опции: per_m2=true → price × площадь, иначе фиксированная цена
+     title, subtitle, note, min_area, max_area, default_area — по желанию */
+const RATES = {"default_area": 50, "kinds": [{"value": "kosm", "label": "Косметический", "rate": 2500}, {"value": "kap", "label": "Капитальный", "rate": 5000}, {"value": "design", "label": "Дизайнерский", "rate": 8000}], "hint_kind": "Цены за м² — из нашего прайса: от 2 500, 5 000 и 8 000 ₽/м².", "extras": [{"id": "bath", "label": "Ванная под ключ", "price": 100000}, {"id": "kitchen", "label": "Кухня", "price": 50000}, {"id": "ceiling", "label": "Натяжные потолки", "price": 450, "per_m2": true}, {"id": "project", "label": "Дизайн-проект", "price": 800, "per_m2": true}]};
+
+const CONFIG = {
+  title: RATES.title || "Калькулятор ремонта",
+  subtitle: RATES.subtitle || "Выберите площадь и тип ремонта — посчитаем стоимость работ по нашему прайсу.",
+  currency: "₽",
+  round: 100,
+  prefix: "от ",
+  note: RATES.note || "Расчёт по ценам «от» из прайса. Точная смета — после замера.",
+  fields: [
+    { id: "area", label: "Площадь квартиры", type: "range", unit: "м²", min: RATES.min_area || 10, max: RATES.max_area || 200, step: 1, default: RATES.default_area || 50 },
+    { id: "kind", label: "Тип ремонта", type: "radio", default: (RATES.kinds[1] || RATES.kinds[0]).value,
+      options: RATES.kinds.map(k => ({ value: k.value, label: k.label, rate: k.rate })),
+      hint: RATES.hint_kind },
+    ...(RATES.extras || []).map(x => ({ id: x.id, type: "checkbox", default: !!x.default,
+      label: x.label + (x.per_m2 ? ` (+${String(x.price).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽/м²)` : ` (от ${String(x.price).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽)`) })),
+  ],
+  lead: {
+    mode: "demo",
+    button: "Записаться на замер",
+    consentText: "Согласен на обработку персональных данных",
+    policyUrl: "",
+  },
+};
+
+function calculate(v) {
+  const n = x => String(x).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const kind = RATES.kinds.find(k => k.value === v.kind) || RATES.kinds[0];
+  const lines = [{ label: `${kind.label}, ${v.area} м² × ${n(kind.rate)} ₽`, value: v.area * kind.rate }];
+  let total = v.area * kind.rate;
+  for (const x of RATES.extras || []) {
+    if (!v[x.id]) continue;
+    const sum = x.per_m2 ? v.area * x.price : x.price;
+    lines.push({ label: x.per_m2 ? `${x.label}, ${v.area} м² × ${n(x.price)} ₽` : x.label, value: sum });
+    total += sum;
+  }
+  return { total, lines };
+}
+/* CALC:END */
+
+(function () {
+  const fmt = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 0 });
+  const money = n => fmt.format(n) + " " + CONFIG.currency;
+  const roundTo = n => Math.round(n / (CONFIG.round || 1)) * (CONFIG.round || 1);
+  const $ = id => document.getElementById(id);
+  const state = {};
+
+  $("calc-title").textContent = CONFIG.title;
+  $("calc-subtitle").textContent = CONFIG.subtitle || "";
+  $("calc-note").textContent = CONFIG.note || "";
+
+  function el(tag, props, children) {
+    const node = document.createElement(tag);
+    Object.assign(node, props || {});
+    (children || []).forEach(c => node.append(c));
+    return node;
+  }
+
+  function numberValue(f, raw) {
+    let n = parseFloat(String(raw).replace(",", "."));
+    if (!isFinite(n)) n = f.default;
+    if (f.min != null) n = Math.max(f.min, n);
+    if (f.max != null) n = Math.min(f.max, n);
+    return n;
+  }
+
+  function buildField(f) {
+    const wrap = el("div", { className: "field" });
+    const id = "f-" + f.id;
+    state[f.id] = f.default;
+    if (f.type === "checkbox") {
+      const box = el("input", { type: "checkbox", id, checked: !!f.default });
+      box.addEventListener("change", () => { state[f.id] = box.checked; update(); });
+      wrap.append(el("label", { className: "check", htmlFor: id }, [box, el("span", { textContent: f.label })]));
+    } else if (f.type === "radio") {
+      wrap.append(el("div", { className: "title", textContent: f.label }));
+      const seg = el("div", { className: "seg", role: "radiogroup" });
+      f.options.forEach((o, i) => {
+        const r = el("input", { type: "radio", name: id, id: id + "-" + i, checked: o.value === f.default });
+        r.addEventListener("change", () => { state[f.id] = o.value; update(); });
+        seg.append(el("label", { htmlFor: id + "-" + i }, [r, el("span", { textContent: o.label })]));
+      });
+      wrap.append(seg);
+    } else if (f.type === "select") {
+      const sel = el("select", { id });
+      f.options.forEach((o, i) => sel.append(el("option", { value: String(i), textContent: o.label, selected: o.value === f.default })));
+      sel.addEventListener("change", () => { state[f.id] = f.options[+sel.value].value; update(); });
+      wrap.append(el("label", { className: "title", htmlFor: id, textContent: f.label }), sel);
+    } else {
+      const num = el("input", { type: "number", id, min: f.min ?? "", max: f.max ?? "", step: f.step ?? "any", value: f.default, inputMode: "decimal" });
+      const row = el("div", { className: "row" }, [num]);
+      if (f.unit) row.append(el("span", { className: "unit", textContent: f.unit }));
+      wrap.append(el("label", { className: "title", htmlFor: id, textContent: f.label }));
+      if (f.type === "range") {
+        const rng = el("input", { type: "range", min: f.min, max: f.max, step: f.step ?? 1, value: f.default, ariaLabel: f.label });
+        rng.addEventListener("input", () => { num.value = rng.value; state[f.id] = numberValue(f, rng.value); update(); });
+        num.addEventListener("input", () => { state[f.id] = numberValue(f, num.value); rng.value = state[f.id]; update(); });
+        wrap.append(rng, row);
+      } else {
+        num.addEventListener("input", () => { state[f.id] = numberValue(f, num.value); update(); });
+        num.addEventListener("blur", () => { num.value = state[f.id]; });
+        wrap.append(row);
+      }
+    }
+    if (f.hint) wrap.append(el("div", { className: "hint", textContent: f.hint }));
+    return wrap;
+  }
+
+  let last = { total: 0, lines: [] };
+  function update() {
+    last = calculate({ ...state });
+    const list = $("calc-lines");
+    if (!last.lines.length) {
+      list.replaceChildren(el("li", {}, [el("span", { textContent: "Отметьте хотя бы одну работу" }), el("span", { textContent: "" })]));
+    } else {
+      // Квиз без цен (CONFIG.quiz): value — строка-ответ, итог — текст, а не сумма
+      list.replaceChildren(...last.lines.map(l => el("li", {}, [el("span", { textContent: l.label }),
+        el("span", { textContent: typeof l.value === "string" ? l.value : money(l.value) })])));
+    }
+    $("calc-total").textContent = CONFIG.quiz ? (CONFIG.quizTotal || "") : (CONFIG.prefix || "") + money(roundTo(last.total));
+    if (CONFIG.quiz) $("calc-total").style.fontSize = "22px";
+  }
+
+  const lead = CONFIG.lead;
+  const openBtn = $("lead-open");
+  openBtn.textContent = lead.button;
+  $("lead-consent-text").textContent = lead.consentText;
+  openBtn.addEventListener("click", () => { $("lead-form").hidden = false; openBtn.hidden = true; });
+
+  $("lead-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const msg = $("lead-msg");
+    const phone = $("lead-phone").value.trim();
+    msg.className = "msg err";
+    if (!phone || phone.replace(/\D/g, "").length < 10) { msg.textContent = "Укажите телефон"; return; }
+    if (!$("lead-consent").checked) { msg.textContent = "Нужно согласие на обработку данных"; return; }
+    msg.className = "msg ok";
+    msg.textContent = "Демо-версия: заявка не отправляется. В рабочей — придёт вам в WhatsApp или Telegram вместе с расчётом.";
+  });
+
+  document.querySelectorAll("[data-demo]").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    $("demo-hint").textContent = "Демо: в рабочей версии здесь откроется чат с вами.";
+  }));
+
+  $("calc-fields").append(...CONFIG.fields.map(buildField));
+  update();
+})();
+</script>
+</body>
+</html>
