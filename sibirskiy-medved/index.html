@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сибирский Медведь — натяжные потолки в Барнауле</title>
+<meta name="description" content="Натяжные потолки в Барнауле и Алтайском крае: световые линии, точечный свет, подсветка. Расчёт стоимости за минуту.">
+<meta name="robots" content="noindex">
+<meta name="build" content="20261107073749">
+<style>
+  :root {
+    --ink: #1f2328;
+    --muted: #5f6670;
+    --bg: #fbfaf7;
+    --paper: #ffffff;
+    --sand: #f1ede4;
+    --line: #e2ddd2;
+    --accent: #2f6b4f;
+    --accent-dark: #24533d;
+    --accent-text: #ffffff;
+    --accent-ink: #24533d;
+    --marker: color-mix(in srgb, var(--accent) 30%, transparent);
+    --ok: #1b7f3b;
+    --error: #c62828;
+    --radius: 14px;
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+* { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--font); }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  section { padding: 56px 0; }
+  h1, h2, h3 { line-height: 1.2; margin: 0; }
+  h2 { font-size: clamp(24px, 4vw, 34px); margin-bottom: 12px; letter-spacing: -.01em; }
+  .sub { color: var(--muted); margin: 0 0 28px; max-width: 640px; }
+
+  /* Плашка демо */
+  .demo-bar { background: var(--ink); color: #f5f2ea; font-size: 14px; text-align: center; padding: 8px 16px; }
+
+  /* Шапка */
+  header { position: sticky; top: 0; z-index: 10; background: rgba(251,250,247,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+  .head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-mark { width: 38px; height: 38px; border-radius: 10px; background: var(--accent); color: var(--accent-text); display: grid; place-items: center; font-weight: 800; font-size: 16px; letter-spacing: .02em; }
+  .logo-text b { display: block; font-size: 18px; }
+  .logo-text span { display: block; font-size: 12px; color: var(--muted); }
+  .head-nav { display: none; gap: 22px; font-size: 15px; }
+  .head-nav a { text-decoration: none; color: var(--muted); }
+  .head-nav a:hover { color: var(--ink); }
+  @media (min-width: 860px) { .head-nav { display: flex; } }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px;
+         border-radius: var(--radius); border: 0; background: var(--accent); color: var(--accent-text);
+         font: 600 16px var(--font); text-decoration: none; cursor: pointer; }
+  .btn:hover { background: var(--accent-dark); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn.ghost:hover { background: var(--sand); }
+  .btn.small { min-height: 40px; padding: 0 14px; font-size: 15px; }
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+
+  /* Первый экран */
+  .hero { padding: 44px 0 56px; }
+  .hero-grid { display: grid; gap: 32px; align-items: center; }
+  @media (min-width: 860px) { .hero-grid { grid-template-columns: 1.15fr 1fr; } }
+  .rating { display: inline-flex; align-items: center; gap: 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; margin-bottom: 18px; }
+  .stars { color: #e0a100; letter-spacing: 1px; }
+  .hero h1 { font-size: clamp(30px, 5.4vw, 50px); letter-spacing: -.02em; margin-bottom: 16px; }
+  .hero h1 em { font-style: normal; background: linear-gradient(transparent 58%, var(--marker) 58%); padding: 0 2px; }
+  .hero p.lead { font-size: 18px; color: var(--muted); margin: 0 0 26px; max-width: 540px; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 26px 0 0; padding: 0; list-style: none; font-size: 15px; color: var(--muted); }
+  .facts li::before { content: "✓ "; color: var(--accent-ink); font-weight: 700; }
+
+  /* Фото работ */
+  .hero-photo { margin: 0; justify-self: center; width: 100%; max-width: 420px; position: relative; }
+  .hero-photo img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 22px; box-shadow: 0 20px 50px rgba(30,30,30,.16); }
+  .hero-photo figcaption { position: absolute; left: 14px; bottom: 14px; background: rgba(31,35,40,.82); color: #fff; font-size: 13px; padding: 6px 10px; border-radius: 8px; }
+  .works { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 699px) { .works figcaption { padding: 8px 10px; font-size: 14px; } .works figcaption span { font-size: 12px; } }
+  @media (min-width: 700px) { .works { grid-template-columns: repeat(3, 1fr); } }
+  .works figure { margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .works img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 65%; }
+  .works figcaption { padding: 12px 14px; font-size: 15px; }
+  .works figcaption span { display: block; color: var(--muted); font-size: 13px; }
+
+  /* Услуги */
+  .cards { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .cards { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 940px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+  .card h3 { font-size: 18px; margin-bottom: 6px; }
+  .card p { margin: 0 0 10px; color: var(--muted); font-size: 15px; }
+  .card .from { font-weight: 700; }
+
+  /* Калькулятор */
+  .calc-section { background: var(--sand); }
+  .calc-grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .calc-grid { grid-template-columns: 1.4fr 1fr; align-items: start; } }
+  .fields { display: grid; gap: 18px; background: var(--paper); border-radius: var(--radius); padding: 20px; border: 1px solid var(--line); }
+  .field label.title, .field .title { display: block; font-weight: 600; margin-bottom: 6px; }
+  .field .hint { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  .row { display: flex; gap: 8px; align-items: center; }
+  input[type=number], input[type=text], input[type=tel], select {
+    width: 100%; font: inherit; color: inherit; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 44px; }
+  input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .unit { color: var(--muted); white-space: nowrap; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .seg { display: flex; flex-wrap: wrap; gap: 8px; }
+  .seg label { position: relative; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; cursor: pointer; min-height: 44px; display: flex; align-items: center; background: var(--paper); }
+  .seg input { position: absolute; opacity: 0; pointer-events: none; }
+  .seg input:checked + span { color: var(--ink); font-weight: 600; }
+  .seg label:has(input:checked) { border-color: var(--ink); background: #fff7d6; }
+  .seg label:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .check { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+  .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: none; }
+  .result { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; position: sticky; top: 80px; }
+  .result h3 { font-size: 15px; margin: 0 0 10px; color: var(--muted); font-weight: 600; }
+  .lines { list-style: none; padding: 0; margin: 0 0 12px; }
+  .lines li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
+  .lines li span:last-child { white-space: nowrap; font-weight: 600; }
+  .total { font-size: 32px; font-weight: 800; margin: 6px 0 4px; letter-spacing: -.01em; }
+  .note { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .result .btn { width: 100%; }
+  .form { display: grid; gap: 10px; margin-top: 14px; }
+  .form[hidden] { display: none; }
+  .msg { font-size: 14px; }
+  .msg.ok { color: var(--ok); }
+  .msg.err { color: var(--error); }
+  .consent { font-size: 13px; color: var(--muted); }
+
+  /* Цены */
+  .price-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .price-grid { grid-template-columns: 1fr 1fr; } }
+  .price { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+  .price h3 { font-size: 17px; margin-bottom: 8px; }
+  .price table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .price td { padding: 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .price tr:last-child td { border-bottom: 0; }
+  .price td:last-child { text-align: right; white-space: nowrap; font-weight: 600; padding-left: 12px; }
+  .small-note { color: var(--muted); font-size: 13px; margin-top: 14px; }
+
+  /* Этапы */
+  .steps { display: grid; gap: 14px; grid-template-columns: 1fr; counter-reset: s; padding: 0; margin: 0; list-style: none; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .steps li { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; counter-increment: s; }
+  .steps li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--ink); font-weight: 800; margin-bottom: 10px; }
+  .steps b { display: block; margin-bottom: 4px; }
+  .steps span { color: var(--muted); font-size: 15px; }
+
+  /* Отзывы */
+  .reviews { display: grid; gap: 20px; align-items: center; background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 26px; }
+  @media (min-width: 760px) { .reviews { grid-template-columns: 220px 1fr; } }
+  .score { text-align: center; }
+  .score b { display: block; font-size: 56px; line-height: 1; }
+  .score span { color: var(--muted); font-size: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; padding: 0; list-style: none; }
+  .tags li { background: var(--sand); border-radius: 999px; padding: 6px 12px; font-size: 14px; }
+
+  /* Контакты */
+  .contact { background: var(--ink); color: #f5f2ea; border-radius: 22px; padding: 32px 24px; display: grid; gap: 20px; }
+  @media (min-width: 760px) { .contact { grid-template-columns: 1.3fr 1fr; align-items: center; padding: 40px; } }
+  .contact h2 { color: #fff; }
+  .contact p { color: #cfc8ba; margin: 0; }
+  .contact .btns { display: grid; gap: 10px; }
+  .btn.wa { background: #1f9d55; color: #fff; } .btn.wa:hover { background: #18804a; }
+  .btn.tg { background: #2a8bd6; color: #fff; } .btn.tg:hover { background: #2274b3; }
+  .demo-hint { font-size: 13px; color: #a9a294; }
+
+  footer { padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+  .reviews-text { margin: 0 0 12px; color: var(--muted); }
+  .hero-grid.no-photo { grid-template-columns: 1fr; max-width: 760px; }
+  .btn.mx { background: linear-gradient(135deg, #3d5afe, #8c3cf0); color: #fff; } .btn.mx:hover { filter: brightness(.9); }
+
+</style>
+</head>
+<body>
+<div class="demo-bar">Демо-версия сайта для «Сибирский Медведь». Фото и данные — из вашей карточки 2ГИС; всё поправим под вас.</div>
+<header>
+  <div class="wrap head">
+    <a class="logo" href="#top" aria-label="Сибирский Медведь — на главную">
+      <span class="logo-mark">СМ</span>
+      <span class="logo-text"><b>Сибирский Медведь</b><span>натяжные потолки · Барнаул</span></span>
+    </a>
+    <nav class="head-nav" aria-label="Разделы"><a href="#services">Услуги</a><a href="#works">Работы</a><a href="#calc">Калькулятор</a><a href="#reviews">Отзывы</a></nav>
+    <a class="btn small" href="#contact">Связаться</a>
+  </div>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="rating"><span class="stars" aria-hidden="true">★★★★★</span> <b>5,0</b> в 2ГИС · 44 оценки</div>
+        <h1>Натяжные потолки в Барнауле — <em>без ожидания неделями</em></h1>
+        <p class="lead">Световые линии, точечный свет, подсветка и аккуратные примыкания к стенам. Ответьте на несколько вопросов — посчитаем стоимость под ваши размеры.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#calc">Рассчитать потолок</a>
+          <a class="btn ghost" href="#contact">Написать в WhatsApp</a>
+        </div>
+        <ul class="facts"><li>Ежедневно с 8:00 до 21:00</li><li>Барнаул и Алтайский край</li><li>5,0 в 2ГИС — 44 оценки</li></ul>
+      </div>
+      <figure class="hero-photo"><img src="img/hero.jpg" alt="Натяжной потолок в ванной с подсветкой по краю и точечными светильниками" width="825" height="1100"><figcaption>Наша работа · потолок с подсветкой</figcaption></figure>
+    </div>
+  </section>
+  <section id="services"><div class="wrap">
+      <h2>Что делаем</h2>
+      <p class="sub">Потолки в квартирах, домах и новостройках — от одной комнаты до всего дома.</p>
+      <div class="cards"><div class="card"><h3>Натяжные потолки</h3><p>Квартиры, частные дома, новостройки под сдачу.</p><span class="from">расчёт по размерам</span></div><div class="card"><h3>Световые линии</h3><p>Свет, встроенный прямо в потолок, — линии любой формы.</p><span class="from">расчёт по проекту</span></div><div class="card"><h3>Точечный свет и подсветка</h3><p>Светильники, подсветка по периметру, свет на кухне и в ванной.</p><span class="from">расчёт по проекту</span></div><div class="card"><h3>Сложные помещения</h3><p>Ванные, примыкание к плитке, непростые углы и ниши.</p><span class="from">после замера</span></div></div>
+  </div></section>
+  <section id="works" style="padding-top:0"><div class="wrap">
+      <h2>Наши работы</h2>
+      <p class="sub">Световые линии, подсветка, точечный свет и ровные примыкания — фото с объектов.</p>
+      <div class="works"><figure><img src="img/work1.jpg" alt="Натяжной потолок со световыми линиями и люстрой" loading="lazy" width="1100" height="825"><figcaption>Световые линии<span>гостиная</span></figcaption></figure><figure><img src="img/work2.jpg" alt="Световые линии на потолке в частном доме" loading="lazy" width="1100" height="495"><figcaption>Световые линии в доме<span>ломаные линии по всей комнате</span></figcaption></figure><figure><img src="img/work3.jpg" alt="Потолок в ванной с подсветкой по периметру" loading="lazy" width="1100" height="825"><figcaption>Подсветка по периметру<span>ванная</span></figcaption></figure><figure><img src="img/work4.jpg" alt="Кухня с точечными светильниками в натяжном потолке" loading="lazy" width="825" height="1100"><figcaption>Точечный свет на кухне<span>светильники в потолке</span></figcaption></figure><figure><img src="img/work5.jpg" alt="Угол натяжного потолка с аккуратным примыканием к стенам" loading="lazy" width="825" height="1100"><figcaption>Ровные углы<span>примыкание к стенам</span></figcaption></figure><figure><img src="img/work6.jpg" alt="Стык натяжного потолка со стеной крупным планом" loading="lazy" width="825" height="1100"><figcaption>Чистый стык со стеной<span>аккуратный профиль</span></figcaption></figure></div>
+      <p class="small-note">Фото из вашей карточки 2ГИС («От владельца»). Добавим сюда остальные работы.</p>
+  </div></section>
+  <section class="calc-section" id="calc"><div class="wrap">
+      <h2 id="calc-title"></h2>
+      <p class="sub" id="calc-subtitle"></p>
+      <div class="calc-grid">
+        <form class="fields" id="calc-fields" novalidate></form>
+        <aside class="result" aria-live="polite">
+          <h3>Ваш расчёт</h3>
+          <ul class="lines" id="calc-lines"></ul>
+          <div class="total" id="calc-total"></div>
+          <p class="note" id="calc-note"></p>
+          <button type="button" class="btn" id="lead-open"></button>
+          <form class="form" id="lead-form" hidden novalidate>
+            <input type="text" id="lead-name" placeholder="Ваше имя" autocomplete="name">
+            <input type="tel" id="lead-phone" placeholder="Телефон" autocomplete="tel">
+            <label class="check consent"><input type="checkbox" id="lead-consent"><span id="lead-consent-text"></span></label>
+            <button type="submit" class="btn" id="lead-send">Отправить</button>
+            <div class="msg" id="lead-msg" role="status"></div>
+          </form>
+        </aside>
+      </div>
+  </div></section>
+  <section><div class="wrap">
+      <h2>Как работаем</h2>
+      <p class="sub">Быстро и без лишних визитов.</p>
+      <ol class="steps"><li><b>Заявка</b><span>Расчёт с сайта, звонок или сообщение в мессенджер.</span></li><li><b>Замер</b><span>Приезжаем, меряем, советуем по свету и полотну.</span></li><li><b>Расчёт</b><span>Точная стоимость под ваши размеры.</span></li><li><b>Монтаж</b><span>Натягиваем потолок и убираем за собой.</span></li></ol>
+  </div></section>
+  <section id="reviews"><div class="wrap">
+      <h2>Что говорят клиенты</h2>
+      <div class="reviews">
+        <div class="score"><b>5,0</b><span class="stars" aria-hidden="true">★★★★★</span><br><span>44 оценки в 2ГИС</span></div>
+        <div>
+          <ul class="tags"><li>Быстро и качественно</li><li>Сделали быстро</li><li>Качественно и красиво</li><li>Отличная работа</li></ul>
+          <p class="reviews-text">Клиенты пишут, что потолки натягивают оперативно — не нужно ждать неделями, справляются со сложными местами вроде примыкания вровень с плиткой и дают дельные советы по освещению. Отмечают адекватную цену; к вам обращаются повторно, в том числе дизайнеры.</p>
+          <a class="btn ghost small" href="https://2gis.ru/barnaul/firm/70000001103788566/tab/reviews" target="_blank" rel="noopener">Читать отзывы в 2ГИС</a>
+        </div>
+      </div>
+  </div></section>
+  <section id="contact"><div class="wrap">
+      <div class="contact">
+        <div><h2>Посчитаем ваш потолок</h2><p>Пришлите размеры комнат или фото — посчитаем и предложим время замера. Ежедневно с 8:00 до 21:00. Офис: с. Власиха, ул. Мамонтова, 90а.</p></div>
+        <div class="btns"><a class="btn wa" href="#contact" data-demo>Написать в WhatsApp</a><a class="btn tg" href="#contact" data-demo>Написать в Telegram</a><a class="btn mx" href="#contact" data-demo>Написать в MAX</a><span class="demo-hint" id="demo-hint">В рабочей версии кнопки откроют ваши WhatsApp, Telegram и MAX.</span></div>
+      </div>
+  </div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Сибирский Медведь — натяжные потолки, Барнаул и Алтайский край</span>
+    <span>Демо-макет. Не является публичной офертой.</span>
+  </div>
+</footer>
+<script>
+/* CALC:START — квиз-расчёт натяжного потолка БЕЗ цен: для фирм, у которых прайса нет нигде в открытом
+   доступе (правило скилла — ставки только из прайса фирмы, выдумывать нельзя). Клиент отвечает на вопросы,
+   видит сводку и отправляет заявку — цену называет сама фирма. RATES (из firm.json → calc.rates) — только тексты:
+   title, subtitle, note, quiz_total, canvases: ["Матовый", …] (по желанию). */
+const RATES = {"title": "Расчёт потолка за минуту", "subtitle": "Ответьте на несколько вопросов — посчитаем стоимость под ваши размеры и пришлём вам.", "quiz_total": "Посчитаем и пришлём цену", "note": "Цена зависит от площади, полотна и света. Оставьте телефон — пришлём расчёт и предложим время замера."};
+
+const CONFIG = {
+  quiz: true,
+  quizTotal: RATES.quiz_total || "Пришлём точную цену",
+  title: RATES.title || "Расчёт потолка за минуту",
+  subtitle: RATES.subtitle || "Ответьте на несколько вопросов — посчитаем стоимость и пришлём вам.",
+  currency: "₽",
+  round: 1,
+  note: RATES.note || "Цена зависит от площади, полотна и света. Отправьте заявку — посчитаем по вашим размерам.",
+  fields: [
+    { id: "area", label: "Площадь потолков", type: "range", unit: "м²", min: 5, max: 200, step: 1, default: 40 },
+    { id: "rooms", label: "Сколько комнат", type: "number", unit: "шт.", min: 1, max: 15, step: 1, default: 2 },
+    { id: "canvas", label: "Полотно", type: "radio", default: "mat",
+      options: (RATES.canvases || ["Матовое", "Сатиновое", "Глянцевое", "Пока не знаю"]).map((l, i) => ({ value: ["mat", "sat", "gl", "unk", "c5", "c6"][i], label: l })) },
+    { id: "spots", label: "Точечные светильники", type: "number", unit: "шт.", min: 0, max: 100, step: 1, default: 6 },
+    { id: "lines", label: "Световые линии", type: "checkbox", default: false },
+    { id: "shadow", label: "Теневой или парящий профиль", type: "checkbox", default: false },
+    { id: "cornice", label: "Скрытый карниз под шторы", type: "checkbox", default: false },
+  ],
+  lead: {
+    mode: "demo",
+    button: "Получить расчёт",
+    consentText: "Согласен на обработку персональных данных",
+    policyUrl: "",
+  },
+};
+
+function calculate(v) {
+  const canvas = CONFIG.fields.find(f => f.id === "canvas").options.find(o => o.value === v.canvas);
+  const extras = [v.lines && "световые линии", v.shadow && "теневой/парящий профиль", v.cornice && "скрытый карниз"].filter(Boolean);
+  const lines = [
+    { label: "Площадь", value: `${v.area} м², комнат: ${v.rooms}` },
+    { label: "Полотно", value: canvas ? canvas.label : "—" },
+    { label: "Светильники", value: `${v.spots} шт.` },
+  ];
+  if (extras.length) lines.push({ label: "Дополнительно", value: extras.join(", ") });
+  return { total: 0, lines };
+}
+/* CALC:END */
+
+(function () {
+  const fmt = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 0 });
+  const money = n => fmt.format(n) + " " + CONFIG.currency;
+  const roundTo = n => Math.round(n / (CONFIG.round || 1)) * (CONFIG.round || 1);
+  const $ = id => document.getElementById(id);
+  const state = {};
+
+  $("calc-title").textContent = CONFIG.title;
+  $("calc-subtitle").textContent = CONFIG.subtitle || "";
+  $("calc-note").textContent = CONFIG.note || "";
+
+  function el(tag, props, children) {
+    const node = document.createElement(tag);
+    Object.assign(node, props || {});
+    (children || []).forEach(c => node.append(c));
+    return node;
+  }
+
+  function numberValue(f, raw) {
+    let n = parseFloat(String(raw).replace(",", "."));
+    if (!isFinite(n)) n = f.default;
+    if (f.min != null) n = Math.max(f.min, n);
+    if (f.max != null) n = Math.min(f.max, n);
+    return n;
+  }
+
+  function buildField(f) {
+    const wrap = el("div", { className: "field" });
+    const id = "f-" + f.id;
+    state[f.id] = f.default;
+    if (f.type === "checkbox") {
+      const box = el("input", { type: "checkbox", id, checked: !!f.default });
+      box.addEventListener("change", () => { state[f.id] = box.checked; update(); });
+      wrap.append(el("label", { className: "check", htmlFor: id }, [box, el("span", { textContent: f.label })]));
+    } else if (f.type === "radio") {
+      wrap.append(el("div", { className: "title", textContent: f.label }));
+      const seg = el("div", { className: "seg", role: "radiogroup" });
+      f.options.forEach((o, i) => {
+        const r = el("input", { type: "radio", name: id, id: id + "-" + i, checked: o.value === f.default });
+        r.addEventListener("change", () => { state[f.id] = o.value; update(); });
+        seg.append(el("label", { htmlFor: id + "-" + i }, [r, el("span", { textContent: o.label })]));
+      });
+      wrap.append(seg);
+    } else if (f.type === "select") {
+      const sel = el("select", { id });
+      f.options.forEach((o, i) => sel.append(el("option", { value: String(i), textContent: o.label, selected: o.value === f.default })));
+      sel.addEventListener("change", () => { state[f.id] = f.options[+sel.value].value; update(); });
+      wrap.append(el("label", { className: "title", htmlFor: id, textContent: f.label }), sel);
+    } else {
+      const num = el("input", { type: "number", id, min: f.min ?? "", max: f.max ?? "", step: f.step ?? "any", value: f.default, inputMode: "decimal" });
+      const row = el("div", { className: "row" }, [num]);
+      if (f.unit) row.append(el("span", { className: "unit", textContent: f.unit }));
+      wrap.append(el("label", { className: "title", htmlFor: id, textContent: f.label }));
+      if (f.type === "range") {
+        const rng = el("input", { type: "range", min: f.min, max: f.max, step: f.step ?? 1, value: f.default, ariaLabel: f.label });
+        rng.addEventListener("input", () => { num.value = rng.value; state[f.id] = numberValue(f, rng.value); update(); });
+        num.addEventListener("input", () => { state[f.id] = numberValue(f, num.value); rng.value = state[f.id]; update(); });
+        wrap.append(rng, row);
+      } else {
+        num.addEventListener("input", () => { state[f.id] = numberValue(f, num.value); update(); });
+        num.addEventListener("blur", () => { num.value = state[f.id]; });
+        wrap.append(row);
+      }
+    }
+    if (f.hint) wrap.append(el("div", { className: "hint", textContent: f.hint }));
+    return wrap;
+  }
+
+  let last = { total: 0, lines: [] };
+  function update() {
+    last = calculate({ ...state });
+    const list = $("calc-lines");
+    if (!last.lines.length) {
+      list.replaceChildren(el("li", {}, [el("span", { textContent: "Отметьте хотя бы одну работу" }), el("span", { textContent: "" })]));
+    } else {
+      // Квиз без цен (CONFIG.quiz): value — строка-ответ, итог — текст, а не сумма
+      list.replaceChildren(...last.lines.map(l => el("li", {}, [el("span", { textContent: l.label }),
+        el("span", { textContent: typeof l.value === "string" ? l.value : money(l.value) })])));
+    }
+    $("calc-total").textContent = CONFIG.quiz ? (CONFIG.quizTotal || "") : (CONFIG.prefix || "") + money(roundTo(last.total));
+    if (CONFIG.quiz) $("calc-total").style.fontSize = "22px";
+  }
+
+  const lead = CONFIG.lead;
+  const openBtn = $("lead-open");
+  openBtn.textContent = lead.button;
+  $("lead-consent-text").textContent = lead.consentText;
+  openBtn.addEventListener("click", () => { $("lead-form").hidden = false; openBtn.hidden = true; });
+
+  $("lead-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const msg = $("lead-msg");
+    const phone = $("lead-phone").value.trim();
+    msg.className = "msg err";
+    if (!phone || phone.replace(/\D/g, "").length < 10) { msg.textContent = "Укажите телефон"; return; }
+    if (!$("lead-consent").checked) { msg.textContent = "Нужно согласие на обработку данных"; return; }
+    msg.className = "msg ok";
+    msg.textContent = "Демо-версия: заявка не отправляется. В рабочей — придёт вам в WhatsApp или Telegram вместе с расчётом.";
+  });
+
+  document.querySelectorAll("[data-demo]").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    $("demo-hint").textContent = "Демо: в рабочей версии здесь откроется чат с вами.";
+  }));
+
+  $("calc-fields").append(...CONFIG.fields.map(buildField));
+  update();
+})();
+</script>
+</body>
+</html>
